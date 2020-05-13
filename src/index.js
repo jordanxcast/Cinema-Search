@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 import axios from "axios";
 import reducer from "./store/reducer";
 
-axios.defaults.baseURL = "http://www.omdbapi.com/";
+axios.defaults.baseURL = "https://www.omdbapi.com/";
 
 axios.interceptors.response.use(
   (response) => {

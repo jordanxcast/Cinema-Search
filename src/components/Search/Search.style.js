@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors} from "./constantStyles";
+import { colors } from "../../constantStyles";
 
 export const ErrorMessage = styled.div`
   text-align: center;
@@ -83,6 +83,7 @@ export const ResultsHeader = styled.h3`
   .search-term {
     color: ${colors.blackCoral};
     font-weight: bolder;
+    border-bottom: 2px solid ${colors.lavendarBlue};
   }
   .no-search-term {
     color: ${colors.rubineRed};

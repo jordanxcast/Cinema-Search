@@ -1,61 +1,14 @@
-import React from "react";
-import { colors } from "./constantStyles";
+import { colors } from "../../constantStyles";
 import styled from "styled-components";
-import ReactTooltip from "react-tooltip";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function MovieItem(props) {
-  return (
-    <MovieItemContainer>
-      <MovieHeader>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "80%",
-          }}
-        >
-          <MovieTitle>{props.title}</MovieTitle>
-          <MovieYear>{props.year}</MovieYear>
-        </div>
 
-        <MovieDelete
-          type="button"
-          onClick={() => {
-            props.clicked();
-          }}
-          data-tip="Delete Movie"
-        >
-          <ReactTooltip
-            textColor={colors.lavendarBlue}
-            backgroundColor={colors.blackCoral}
-            place="top"
-            effect="float"
-          />
-          <FontAwesomeIcon icon={faTimes} />
-        </MovieDelete>
-      </MovieHeader>
-
-      {/* <MovieImage src={props.image} alt={`${props.title} Poster`}></MovieImage> */}
-      <MovieImageContainer>
-        <MovieImage
-          src={props.image}
-          alt={`${props.title} Poster`}
-        ></MovieImage>
-      </MovieImageContainer>
-    </MovieItemContainer>
-  );
-}
-
-const MovieItemContainer = styled.div`
+export const MovieItemContainer = styled.div`
   width: 80%;
   min-width: 200px;
   height: fit-content;
   padding: 0px;
   margin: 50px auto;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
-
   animation: 1s ease 0s 1 fadeIn;
 
   @media (min-width: 500px) {
@@ -80,7 +33,7 @@ const MovieItemContainer = styled.div`
   }
 `;
 
-const MovieHeader = styled.div`
+export const MovieHeader = styled.div`
   min-height: 90px;
   display: flex;
   width: 100%;
@@ -90,7 +43,7 @@ const MovieHeader = styled.div`
   /* border: 1px solid ${colors.charcoal}; */
 `;
 
-const MovieTitle = styled.div`
+export const MovieTitle = styled.div`
   font-size: 20px;
   text-align: left;
   margin-bottom: 10px;
@@ -98,13 +51,15 @@ const MovieTitle = styled.div`
   padding-left: 20px;
   font-weight: bold;
 `;
-const MovieYear = styled.div`
+
+export const MovieYear = styled.div`
   font-size: 14px;
   text-align: left;
   padding-left: 20px;
   color: ${colors.charcoal};
 `;
-const MovieDelete = styled.button`
+
+export const MovieDelete = styled.button`
   font-size: 12px;
   padding: 0px 5px;
   width: fit-content;
@@ -125,7 +80,8 @@ const MovieDelete = styled.button`
     color: ${colors.tangerine};
   }
 `;
-const MovieImageContainer = styled.div`
+
+export const MovieImageContainer = styled.div`
   width: 100%;
   height: fit-content;
   border: none;
@@ -145,7 +101,8 @@ const MovieImageContainer = styled.div`
     min-height: 500px;
   }
 `;
-const MovieImage = styled.img`
+
+export const MovieImage = styled.img`
   object-fit: cover;
   width: 80%;
   height: 100%;

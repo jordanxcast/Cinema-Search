@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors, PageHeader } from "../constantStyles";
 
-
-
 export default function NotFoundPage(props) {
   return (
     <NotFoundContainer>

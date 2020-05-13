@@ -1,6 +1,9 @@
 import React from "react";
 import { colors } from "./constantStyles";
 import styled from "styled-components";
+import ReactTooltip from "react-tooltip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function MovieItem(props) {
   return (
@@ -22,8 +25,15 @@ export default function MovieItem(props) {
           onClick={() => {
             props.clicked();
           }}
+          data-tip="Delete Movie"
         >
-          X
+          <ReactTooltip
+            textColor={colors.lavendarBlue}
+            backgroundColor={colors.blackCoral}
+            place="top"
+            effect="float"
+          />
+          <FontAwesomeIcon icon={faTimes} />
         </MovieDelete>
       </MovieHeader>
 

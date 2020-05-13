@@ -1,3 +1,22 @@
+# Movie Search 
+Platform for users to search by movie titles 
+
+## Live Link
+- url here
+
+## Tech Stack 
+- React
+- Redux 
+- Axios 
+- Styled-components
+- React Tooltip 
+
+### Contributors 
+- Jordan Castillo 
+- reach out if you would like to contribute to this project!
+
+----
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,4 +85,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# Movie-Search
+

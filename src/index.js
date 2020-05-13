@@ -11,22 +11,10 @@ import reducer from "./store/reducer";
 
 axios.defaults.baseURL = "http://www.omdbapi.com/";
 
-axios.interceptors.request.use(
-  (request) => {
-    console.log(request);
-    //this is where you would edit the request anyway you choose
-    return request;
-  },
-  (error) => {
-    console.log(error);
-    return Promise.reject(error);
-  }
-);
-
 axios.interceptors.response.use(
   (response) => {
     console.log(response.data);
-    //this is where you would edit the response
+    //this is where you would edit the response - we dont need that for now - more for the future
     if (response.data.Error === "Too many results.") {
       console.log("TOO MANY RESULTS");
     }
@@ -38,8 +26,10 @@ axios.interceptors.response.use(
   }
 );
 
+//dev tools enhancer
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+//create redux store with middleware - utilizing redux thunk for async functionality
 const storeMovies = createStore(
   reducer,
   composeEnhancers(applyMiddleware(thunk))

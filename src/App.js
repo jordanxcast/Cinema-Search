@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Search from "./Search";
+import Search from "./components/Search/Search";
 import NotFoundPage from "./Utils/NotFoundPage";
 
 import "./App.css";

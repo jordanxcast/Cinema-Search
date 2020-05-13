@@ -13,5 +13,5 @@ export const colors = {
 export const PageHeader = styled.h1`
   margin: ${({ margin }) => (margin ? margin : "50px auto 0px")};
   font-size: 2em;
-  color: ${colors.rubineRed};
+  color: ${({ color }) => (color ? color : colors.rubineRed)};
 `;

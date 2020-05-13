@@ -1,83 +1,148 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { searchMovie, deleteMovie } from "./store/actions";
 import { colors, PageHeader } from "./constantStyles";
-import styled from "styled-components";
 import MovieItem from "./MovieItem";
+import {
+  ErrorMessage,
+  SearchContainer,
+  SearchInput,
+  SearchSubmit,
+  MovieResults,
+  Loading,
+  ResultsHeader,
+  BackToTop,
+} from "./Search.style";
 
-export default function Search(props) {
+function Search(props) {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showScroll, setShowScroll] = useState(false);
+
+  const handleMovieSearch = (ev) => {
+    ev.preventDefault();
+    setLoading(true);
+    const { movieSearchTerm } = ev.target;
+    let search_term = movieSearchTerm.value;
+    setSearchTerm(search_term);
+
+    //redux dispatch to action creator
+    props.onSearchMovie(search_term);
+
+    movieSearchTerm.value = "";
+    setLoading(false);
+    setFormIsValid(false);
+  };
+
+  const inputChangeHandler = (ev) => {
+    setError(false);
+    if (ev.target.value !== "") {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  };
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 400) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 400) {
+      setShowScroll(false);
+    }
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  window.addEventListener("scroll", checkScrollTop);
   return (
     <>
-      <SearchContainer>
-        <PageHeader margin="0px auto">Movie Search</PageHeader>
+      <SearchContainer
+        onSubmit={(ev) => {
+          handleMovieSearch(ev);
+        }}
+      >
+        <PageHeader margin="0px auto" color={colors.lavendarBlue}>
+          Movie Search
+        </PageHeader>
+
+        {error && (
+          <ErrorMessage>Something went wrong, please try again!</ErrorMessage>
+        )}
+
         <form>
           <label>
-            <SearchInput placeholder="Pulp Fiction" type="text" />
+            <SearchInput
+              placeholder="Search by movie title"
+              type="text"
+              name="movieSearchTerm"
+              onChange={(ev) => {
+                inputChangeHandler(ev);
+              }}
+              required
+            />
           </label>
-          <SearchSubmit>Search</SearchSubmit>
+          <SearchSubmit
+            type="submit"
+            disabled={!formIsValid}
+            valid={formIsValid}
+          >
+            Search
+          </SearchSubmit>
         </form>
       </SearchContainer>
       <MovieResults>
-        <MovieItem />
+        <ResultsHeader>
+          {searchTerm ? (
+            <span className="search-term-exists">
+              {" "}
+              You searched for <span className="search-term">{searchTerm}</span>
+            </span>
+          ) : (
+            <span className="no-search-term">Search for a movie above</span>
+          )}
+        </ResultsHeader>
+
+        {loading && <Loading>Loading ...</Loading>}
+
+        {props.movieResults ? (
+          props.movieResults.map((movie, idx) => {
+            return (
+              <MovieItem
+                clicked={() => props.onDeleteMovie(idx)}
+                title={movie.Title}
+                year={movie.Year}
+                image={movie.Poster}
+                key={idx}
+              />
+            );
+          })
+        ) : (
+          <div style={{ width: "100%" }}>
+            Please try searching another title
+          </div>
+        )}
+        <br />
+
+        {showScroll && <BackToTop onClick={scrollTop}>^</BackToTop>}
       </MovieResults>
     </>
   );
 }
 
-const SearchContainer = styled.div`
-  padding: 30px;
-  text-align: center;
-  background-color: ${colors.charcoal};
-  color: ${colors.rubineRed};
-  display: flex;
-  flex-direction: column;
+const mapStateToProps = (state) => {
+  return {
+    movieResults: state.movies,
+  };
+};
 
-  > form {
-    display: flex;
-    flex-direction: column;
-  }
-`;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchMovie: (searchTerm) => dispatch(searchMovie(searchTerm)),
+    onDeleteMovie: (idx) => dispatch(deleteMovie(idx)),
+  };
+};
 
-const SearchInput = styled.input`
-  padding: 10px 20px;
-  text-align: center;
-  font-size: 18px;
-  border: 1px solid ${colors.blackCoral};
-  border-radius: 10px;
-  width: 80%;
-  margin: 30px auto 30px;
-  background: transparent;
-  color: ${colors.lavendarBlue};
-
-  :hover,
-  :focus {
-    border-color: ${colors.tangerine};
-  }
-
-  @media (min-width: 700px) {
-    width: 40%;
-  }
-`;
-
-const SearchSubmit = styled.button`
-  padding: 10px 20px;
-  text-align: center;
-  font-size: 14px;
-  border: 1px solid ${colors.blackCoral};
-  background: transparent;
-  border-radius: 30px;
-  width: fit-content;
-  margin: auto;
-  color: ${colors.blackCoral};
-  :hover,
-  :focus {
-    cursor: pointer;
-    color: ${colors.lavendarBlue};
-    border: 1px solid ${colors.lavendarBlue};
-  }
-`;
-
-const MovieResults = styled.div`
-  padding: 50px 0px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

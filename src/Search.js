@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { searchMovie, deleteMovie } from "./store/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { colors, PageHeader } from "./constantStyles";
 import MovieItem from "./MovieItem";
 import {
@@ -12,6 +14,7 @@ import {
   Loading,
   ResultsHeader,
   BackToTop,
+  NoSearchResults,
 } from "./Search.style";
 
 function Search(props) {
@@ -120,13 +123,17 @@ function Search(props) {
             );
           })
         ) : (
-          <div style={{ width: "100%" }}>
+          <NoSearchResults style={{ width: "100%" }}>
             Please try searching another title
-          </div>
+          </NoSearchResults>
         )}
         <br />
 
-        {showScroll && <BackToTop onClick={scrollTop}>^</BackToTop>}
+        {showScroll && (
+          <BackToTop onClick={scrollTop}>
+            <FontAwesomeIcon icon={faArrowUp} />
+          </BackToTop>
+        )}
       </MovieResults>
     </>
   );

@@ -30,7 +30,7 @@ export const SearchInput = styled.input`
   width: 80%;
   margin: 30px auto 30px;
   background: transparent;
-  color: ${colors.lavendarBlue};
+  color: ${colors.grey};
 
   :hover,
   :focus {
@@ -91,30 +91,26 @@ export const ResultsHeader = styled.h3`
   }
 `;
 
-export const NoSerarchResults = styled.div`
+export const NoSearchResults = styled.div`
   width: 100%;
   font-size: 30px;
   margin-top: 50px;
+  color: ${colors.rubineRed};
 `;
 
 export const BackToTop = styled.button`
-  /* position: relative;
-  bottom: 0px;
-  border: none;
-  background: transparent;
-  font-size: 30px; */
-
   position: fixed;
   width: fit-content;
   bottom: 20px;
   left: 20px;
   align-items: center;
-  height: 20px;
+  height: 30px;
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s;
   transition: opacity 0.4s;
   opacity: 0.5;
+  border-radius: 10px;
 
   @keyframes fadeIn {
     0% {

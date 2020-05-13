@@ -27,7 +27,13 @@ export default function MovieItem(props) {
         </MovieDelete>
       </MovieHeader>
 
-      <MovieImage src={props.image} alt={`${props.title} Poster`}></MovieImage>
+      {/* <MovieImage src={props.image} alt={`${props.title} Poster`}></MovieImage> */}
+      <MovieImageContainer>
+        <MovieImage
+          src={props.image}
+          alt={`${props.title} Poster`}
+        ></MovieImage>
+      </MovieImageContainer>
     </MovieItemContainer>
   );
 }
@@ -109,12 +115,34 @@ const MovieDelete = styled.button`
     color: ${colors.tangerine};
   }
 `;
-const MovieImage = styled.img`
+const MovieImageContainer = styled.div`
   width: 100%;
   height: fit-content;
   border: none;
+  margin: 0px auto;
+  padding: 5px 0px;
+  background-color: ${colors.charcoal};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 800px) {
+    height: 400px;
+    min-height: 400px;
+  }
+
+  @media (min-width: 900px) {
+    min-height: 500px;
+  }
+`;
+const MovieImage = styled.img`
+  object-fit: cover;
+  width: 80%;
+  height: 100%;
+  border: none;
   background-color: black;
-  color: white;
-  margin: 0px;
+  color: ${colors.lavendarBlue};
+  text-align: center;
+  line-height: 300px;
   padding: 0px;
 `;

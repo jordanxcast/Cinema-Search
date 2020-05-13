@@ -78,7 +78,7 @@ function Search(props) {
         }}
       >
         <PageHeader margin="0px auto" color={colors.lavendarBlue}>
-          Movie Search
+          Cinema Search
         </PageHeader>
 
         {/* This handles any request errors, if somehow the api call is completly unsuccessful */}

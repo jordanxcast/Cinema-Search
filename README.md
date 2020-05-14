@@ -2,7 +2,7 @@
 Platform for users to search by movie titles 
 
 ## Live Link
-- url here
+- https://cinema-search.herokuapp.com/
 
 ## Tech Stack 
 - React

@@ -1,5 +1,5 @@
 # Cinema Search 
-Platform for users to search by movie titles 
+Platform for users to search the OMDB API by movie title. Search a title, and see the results in a grid format below including movie title, release year and poster image. User can click on the delete button ot remove the movie from the generated results. If the user scrolls down the page, a coveninent button appears to scroll back to ths top for improved user experience. Overall appearance of the platform is clean and simple so the focus remains on the movies the user is searching for. 
 
 ## Live Link
 - https://cinema-search.herokuapp.com/
@@ -14,6 +14,11 @@ Platform for users to search by movie titles
 ### Contributors 
 - Jordan Castillo 
 - reach out if you would like to contribute to this project!
+
+#### Future ideas: 
+- Ability for user to have their own account if they want to save certain movies 
+- Ability to make a quick note (or review?) about movies 
+- Possibly share these reviews 
 
 ----
 

@@ -1,4 +1,4 @@
-# Movie Search 
+# Cinema Search 
 Platform for users to search by movie titles 
 
 ## Live Link
